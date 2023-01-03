@@ -31,8 +31,8 @@ setup (
  long_description=README,
  long_description_content_type="text/markdown",
  license='MIT',
- url='https://github.com/CITGuru/cver',
- download_url='https://github.com/CITGuru/cver/archive/1.0.0.tar.gz',
+ url='https://github.com/AsolyticsOpenSource/asolytics',
+ download_url='https://github.com/AsolyticsOpenSource/asolytics/archive/refs/heads/main.zip',
   dependency_links=dependency_links,
   author_email='asolytics@gmail.com',
   classifiers=[
