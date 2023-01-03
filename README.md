@@ -59,6 +59,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+[![Asolytics ASO Tool Screen Shot][product-screenshot]](https://en.wikipedia.org/wiki/Command-line_interface)
+
 <!-- LINKS & IMAGES asolytics -->
 [contributors-shield]: https://img.shields.io/github/contributors/AsolyticsOpenSource/asolytics.svg?style=for-the-badge
 [contributors-url]: https://github.com/AsolyticsOpenSource/asolytics/graphs/contributors
@@ -77,3 +79,5 @@
 
 [telegram-shield]: https://img.shields.io/badge/-Telegram-black.svg?style=for-the-badge&logo=telegram&colorB=555
 [telegram-url]: https://t.me/asolytics
+
+[product-screenshot]: macbook.png
