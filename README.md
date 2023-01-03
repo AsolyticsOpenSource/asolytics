@@ -56,6 +56,9 @@
 <li><a href="#acknowledgments">Acknowledgments</a></li>
 </ol>
 
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
 <!-- LINKS & IMAGES asolytics -->
 [contributors-shield]: https://img.shields.io/github/contributors/AsolyticsOpenSource/asolytics.svg?style=for-the-badge
 [contributors-url]: https://github.com/AsolyticsOpenSource/asolytics/graphs/contributors
