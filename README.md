@@ -7,6 +7,12 @@
 [![MIT License][license-shield]][license-url]
 [![Telegram][telegram-shield]][telegram-url]
 
+<br />
+<div align="center">
+  <a href="https://github.com/AsolyticsOpenSource/asolytics">
+    <img src="logo.svg" alt="Logo" width="80" height="80">
+  </a>
+
 <!-- LINKS & IMAGES asolytics -->
 [contributors-shield]: https://img.shields.io/github/contributors/AsolyticsOpenSource/asolytics.svg?style=for-the-badge
 [contributors-url]: https://github.com/AsolyticsOpenSource/asolytics/graphs/contributors
