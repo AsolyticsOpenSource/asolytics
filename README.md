@@ -116,6 +116,14 @@ pip install aso
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- USAGE EXAMPLES -->
+## Usage
+
+1. To view a list of available Asolytics software features, use the `--help` key 
+```sh
+asolytics --help
+```
+
 <!-- LINKS & IMAGES asolytics -->
 [contributors-shield]: https://img.shields.io/github/contributors/AsolyticsOpenSource/asolytics.svg?style=for-the-badge
 [contributors-url]: https://github.com/AsolyticsOpenSource/asolytics/graphs/contributors
