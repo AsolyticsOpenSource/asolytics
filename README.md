@@ -45,7 +45,7 @@
     <a href="#getting-started">Getting Started</a>
     <ul>
     <li><a href="#prerequisites">Prerequisites</a></li>
-    <li><a href="#installation">Installation</a></li>
+    <li><a href="#installation-asolytics">Installation Asolytics</a></li>
     </ul>
 </li>
 <li><a href="#usage">Usage</a></li>
@@ -100,6 +100,8 @@ To use Asolytics, you need to install the scarce components and software
 
 * Install or update the Firefox browser on your computer (<a href="https://www.mozilla.org/en-US/firefox/">Download Firefox</a>)
 * Install Python3 on your computer. On some systems it is installed by default (<a href="https://www.python.org/downloads/">Download Python</a>)
+
+### Installation Asolytics
 
 <!-- LINKS & IMAGES asolytics -->
 [contributors-shield]: https://img.shields.io/github/contributors/AsolyticsOpenSource/asolytics.svg?style=for-the-badge
