@@ -73,6 +73,8 @@ Here's why:
 
 Of course, no one software will fit all tasks related to ASO, because your needs may be different. So I will add more functions in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- LINKS & IMAGES asolytics -->
 [contributors-shield]: https://img.shields.io/github/contributors/AsolyticsOpenSource/asolytics.svg?style=for-the-badge
 [contributors-url]: https://github.com/AsolyticsOpenSource/asolytics/graphs/contributors
