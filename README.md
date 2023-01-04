@@ -135,6 +135,11 @@ asolytics --key workout --gl AU --hl en
 
 [![Asolytics ASO suggest parsing][key-screenshot]](https://github.com/AsolyticsOpenSource/asolytics/raw/main/screen-key.png)
 
+4. To identify the most popular keywords on Google Play, use the parameter `--trends`. To specify country and language, use `--gl` and `--hl` parameters. The table will display the trending search terms and their relative popularity
+```sh
+asolytics --trends --gl AU --hl en
+```
+
 <!-- LINKS & IMAGES asolytics -->
 [contributors-shield]: https://img.shields.io/github/contributors/AsolyticsOpenSource/asolytics.svg?style=for-the-badge
 [contributors-url]: https://github.com/AsolyticsOpenSource/asolytics/graphs/contributors
