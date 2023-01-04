@@ -81,7 +81,8 @@ All major frameworks/libraries and software that the Asolytics.app project uses 
 
 * <img src="https://img.shields.io/badge/firefox-000000?style=for-the-badge&logo=firefox&logoColor=white" alt="firefox"> Just a lightning fast browser
 * <img src="https://img.shields.io/badge/python-20232A?style=for-the-badge&logo=python&logoColor=61DAFB" alt="Python"> Python is a programming language that lets you work quickly and integrate systems more effectively
-* <img src="https://img.shields.io/badge/selenium-35495E?style=for-the-badge&logo=selenium&logoColor=4FC08D" alt="Selenium"> Python is a programming language that lets you work quickly and integrate systems more effectively
+* <img src="https://img.shields.io/badge/selenium-35495E?style=for-the-badge&logo=selenium&logoColor=4FC08D" alt="Selenium"> Automates browsers
+* <img src="https://img.shields.io/badge/yake-DD0031?style=for-the-badge&logoColor=white" alt="Yake"> Unsupervised Approach for Automatic Keyword Extraction using Text Features.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
