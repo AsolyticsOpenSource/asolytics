@@ -88,6 +88,10 @@ All major frameworks/libraries and software that the Asolytics.app project uses 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+
+<!-- GETTING STARTED -->
+## Getting Started
+
 <!-- LINKS & IMAGES asolytics -->
 [contributors-shield]: https://img.shields.io/github/contributors/AsolyticsOpenSource/asolytics.svg?style=for-the-badge
 [contributors-url]: https://github.com/AsolyticsOpenSource/asolytics/graphs/contributors
