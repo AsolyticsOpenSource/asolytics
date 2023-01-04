@@ -61,6 +61,18 @@
 
 [![Asolytics ASO Tool Screen Shot][product-screenshot]](https://en.wikipedia.org/wiki/Command-line_interface)
 
+In the world there are many ASO services which solve different tasks related to search engine optimization in mobile app stores. All of them have advantages and disadvantages, one of the main drawbacks is closed algorithms for data analysis, ASO specialist has no access to raw data, in most services is unknown how the popularity of keywords is formed, there is no way to check the correctness of the algorithm, and therefore difficult to trust the data and make serious conclusions.
+
+We want to create an open source service for ASO experts, so that each user could have full access to all data and algorithms, could offer their own functions or add their own code. This promotes the ASO community and improves the professionalism of specialists. 
+
+Here's why:
+
+* Your time should be focused on creating something amazing. A project that solves a problem and helps others;
+* You should always have a wealth of information to make decisions;
+* You should always be able to check the source of the data and the algorithm for calculating it;
+
+Of course, no one software will fit all tasks related to ASO, because your needs may be different. So I will add more functions in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue.
+
 <!-- LINKS & IMAGES asolytics -->
 [contributors-shield]: https://img.shields.io/github/contributors/AsolyticsOpenSource/asolytics.svg?style=for-the-badge
 [contributors-url]: https://github.com/AsolyticsOpenSource/asolytics/graphs/contributors
