@@ -388,8 +388,8 @@ def average_install_in_Google_Play(bundleID, gl):
     search.click()
     search.send_keys(bundleID)
 
-    time.sleep(15)
-
+    time.sleep(25)
+    
     item = browser.find_element(By.CLASS_NAME, "BaseAutocomplete-module__option--OiqfD")
 
     strs = item.text.split("\n")
