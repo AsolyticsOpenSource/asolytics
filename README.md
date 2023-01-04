@@ -103,6 +103,11 @@ To use Asolytics, you need to install the scarce components and software
 
 ### Installation Asolytics
 
+1. To install Asolytics, open a terminal and run the following command
+   ```sh
+   python3 install aso
+   ```
+
 <!-- LINKS & IMAGES asolytics -->
 [contributors-shield]: https://img.shields.io/github/contributors/AsolyticsOpenSource/asolytics.svg?style=for-the-badge
 [contributors-url]: https://github.com/AsolyticsOpenSource/asolytics/graphs/contributors
