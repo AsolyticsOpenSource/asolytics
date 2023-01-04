@@ -165,7 +165,7 @@ asolytics --tracker 'workout at home;fitness;fitness plans' --id com.fiton.andro
 
 Use this command to load keywords from a file
 ```sh
-asolytics --tracker '/path/keywords.txt' --id com.fiton.android --gl US --hl en 
+asolytics --tracker '/path/keywords.txt' --file --id com.fiton.android --gl US --hl en 
 ```
 
 In the keywords.txt file each keyword must be on a new line.
