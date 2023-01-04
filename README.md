@@ -157,6 +157,24 @@ You will get the following data:
 
 [![Asolytics ASO app analysis][average-screenshot]](https://github.com/AsolyticsOpenSource/asolytics/raw/main/screen-average.png)
 
+6. The software allows you to track an app's position in a Google Play search using specified keywords. To run this function, use the `--tracker` key. The keywords are passed as a parameter, with a semicolon (example `'workout at home;fitness;fitness plans'`). In addition, keywords can be loaded from a file, to do this, use key `--file`, at that the path to the file with the keywords should be passed as a parameter `--tracker`. As the `--id` parameter, pass the bundleID of the app whose positions you want to track To specify the country and language, use the `--gl` and `--hl` keys.
+```sh
+asolytics --tracker 'workout at home;fitness;fitness plans' --id com.fiton.android --gl US --hl en 
+```
+[![Asolytics ASO tracker keywords][tracker-screenshot]](https://github.com/AsolyticsOpenSource/asolytics/raw/main/screen-tracker.png)
+
+Use this command to load keywords from a file
+```sh
+asolytics --tracker '/path/keywords.txt' --id com.fiton.android --gl US --hl en 
+```
+
+In the keywords.txt file each keyword must be on a new line.
+Example of file content
+`workout at home`
+`fitness`
+`fitness plans`
+
+
 <!-- LINKS & IMAGES asolytics -->
 [contributors-shield]: https://img.shields.io/github/contributors/AsolyticsOpenSource/asolytics.svg?style=for-the-badge
 [contributors-url]: https://github.com/AsolyticsOpenSource/asolytics/graphs/contributors
@@ -185,3 +203,5 @@ You will get the following data:
 [trends-screenshot]: screen-trends.png
 
 [average-screenshot]: screen-average.png
+
+[tracker-screenshot]: screen-tracker.png
