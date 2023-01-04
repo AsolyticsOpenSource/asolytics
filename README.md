@@ -141,6 +141,22 @@ asolytics --trends --gl AU --hl en
 ```
 [![Asolytics ASO Google Play trends][trends-screenshot]](https://github.com/AsolyticsOpenSource/asolytics/raw/main/screen-trends.png)
 
+5. You can get a lot of additional information about your competitors on Google Play by using the --average option with the bundle ID of the app you want to analyze.
+```sh
+asolytics --average com.moymer.falou --gl AU
+```
+
+You will get the following data:
+* The total number of ratings on Google Play;
+* The number of installations in Google Play;
+* Average number of installations of the app per day;
+* Average number of ratings per day;
+* Revenue of the app for the last month;
+* Countries from which the app gets the most traffic;
+* The country of the app's origin;
+
+[![Asolytics ASO app analysis][average-screenshot]](https://github.com/AsolyticsOpenSource/asolytics/raw/main/screen-average.png)
+
 <!-- LINKS & IMAGES asolytics -->
 [contributors-shield]: https://img.shields.io/github/contributors/AsolyticsOpenSource/asolytics.svg?style=for-the-badge
 [contributors-url]: https://github.com/AsolyticsOpenSource/asolytics/graphs/contributors
@@ -167,3 +183,5 @@ asolytics --trends --gl AU --hl en
 [key-screenshot]: screen-key.png
 
 [trends-screenshot]: screen-trends.png
+
+[average-screenshot]: screen-average.png
