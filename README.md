@@ -84,6 +84,7 @@ All major frameworks/libraries and software that the Asolytics.app project uses 
 * <img src="https://img.shields.io/badge/selenium-35495E?style=for-the-badge&logo=selenium&logoColor=4FC08D" alt="Selenium"> Automates browsers
 * <img src="https://img.shields.io/badge/yake-DD0031?style=for-the-badge&logoColor=white" alt="Yake"> Unsupervised Approach for Automatic Keyword Extraction using Text Features.
 * <img src="https://img.shields.io/badge/PrettyTable-4A4A55?style=for-the-badge&logoColor=FF3E00" alt="PrettyTable"> A simple Python library for easily displaying tabular data in a visually appealing ASCII table format
+* <img src="https://img.shields.io/badge/argparse-FF2D20?style=for-the-badge&logoColor=white" alt="Argparse"> Parser for command-line options, arguments and sub-commands
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
