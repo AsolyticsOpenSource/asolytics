@@ -181,6 +181,8 @@ asolytics --extract com.fiton.android --gl US --hl en
 
 [![Asolytics ASO extract keywords][extract-screenshot]](https://github.com/AsolyticsOpenSource/asolytics/raw/main/screen-extract.png)
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- LINKS & IMAGES asolytics -->
 [contributors-shield]: https://img.shields.io/github/contributors/AsolyticsOpenSource/asolytics.svg?style=for-the-badge
