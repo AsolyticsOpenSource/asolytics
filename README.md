@@ -124,6 +124,8 @@ pip install aso
 asolytics --help
 ```
 
+[![Asolytics ASO Tool Help][help-screenshot]]()
+
 <!-- LINKS & IMAGES asolytics -->
 [contributors-shield]: https://img.shields.io/github/contributors/AsolyticsOpenSource/asolytics.svg?style=for-the-badge
 [contributors-url]: https://github.com/AsolyticsOpenSource/asolytics/graphs/contributors
@@ -144,3 +146,5 @@ asolytics --help
 [telegram-url]: https://t.me/asolytics
 
 [product-screenshot]: macbook.png
+
+[help-screenshot]: screen-help.png
