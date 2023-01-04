@@ -99,7 +99,7 @@ To install and run your local copy of the software, follow these simple steps.
 To use Asolytics, you need to install the scarce components and software
 
 * Install or update the Firefox browser on your computer (<a href="https://www.mozilla.org/en-US/firefox/">Download Firefox</a>)
-* Install or update the Firefox browser on your computer (<a href="https://www.mozilla.org/en-US/firefox/">Download Firefox</a>)
+* Install Python3 on your computer. On some systems it is installed by default (<a href="https://www.python.org/downloads/">Download Python</a>)
 
 <!-- LINKS & IMAGES asolytics -->
 [contributors-shield]: https://img.shields.io/github/contributors/AsolyticsOpenSource/asolytics.svg?style=for-the-badge
