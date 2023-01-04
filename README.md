@@ -186,6 +186,22 @@ asolytics --extract com.fiton.android --gl US --hl en
 <!-- ROADMAP -->
 ## Roadmap
 
+- [x] Make instructions for use
+- [x] Suggest parser
+- [x] Trend analysis on Google Play
+- [x] App info
+    - [] Tracking App Positions in Categories
+- [x] Tracking positions in Google Play searches
+- [x] Extracting keywords from app metadata using artificial intelligence
+- [] Add multilingual localization of the software
+- [x] Website
+    - [] Make graphics for website
+    - [] Translate website into English
+
+See the [open issues](https://github.com/AsolyticsOpenSource/asolytics/issues) for a full list of proposed features (and known issues).
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- LINKS & IMAGES asolytics -->
 [contributors-shield]: https://img.shields.io/github/contributors/AsolyticsOpenSource/asolytics.svg?style=for-the-badge
 [contributors-url]: https://github.com/AsolyticsOpenSource/asolytics/graphs/contributors
