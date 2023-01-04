@@ -193,7 +193,7 @@ asolytics --extract com.fiton.android --gl US --hl en
     - [ ] Tracking app positions in categories
 - [x] Tracking positions in Google Play searches
 - [x] Extracting keywords from app metadata using artificial intelligence
-- [] Add multilingual localization of the software
+- [ ] Add multilingual localization of the software
 - [x] Website
     - [ ] Make graphics for website
     - [ ] Translate website into English
