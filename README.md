@@ -126,6 +126,8 @@ asolytics --help
 
 [![Asolytics ASO Tool Help][help-screenshot]]()
 
+2. To specify a country code and language, use the `--gl` and `--hl` keys. To specify the country, use the two-character <a href="https://www.iso.org/obp/ui/#search">ISO country code</a>. To specify the language code, use the code from this <a href="https://support.google.com/googleplay/android-developer/table/4419860?hl=uk">table</a>. Example: `--gl AU --hl en` (country: Australia, language: English)
+
 <!-- LINKS & IMAGES asolytics -->
 [contributors-shield]: https://img.shields.io/github/contributors/AsolyticsOpenSource/asolytics.svg?style=for-the-badge
 [contributors-url]: https://github.com/AsolyticsOpenSource/asolytics/graphs/contributors
