@@ -190,13 +190,13 @@ asolytics --extract com.fiton.android --gl US --hl en
 - [x] Suggest parser
 - [x] Trend analysis on Google Play
 - [x] App info
-    - [] Tracking app positions in categories
+    - [ ] Tracking app positions in categories
 - [x] Tracking positions in Google Play searches
 - [x] Extracting keywords from app metadata using artificial intelligence
 - [] Add multilingual localization of the software
 - [x] Website
-    - [] Make graphics for website
-    - [] Translate website into English
+    - [ ] Make graphics for website
+    - [ ] Translate website into English
 
 See the [open issues](https://github.com/AsolyticsOpenSource/asolytics/issues) for a full list of proposed features (and known issues).
 
