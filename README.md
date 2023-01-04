@@ -169,9 +169,13 @@ asolytics --tracker '/path/keywords.txt' --file --id com.fiton.android --gl US -
 ```
 
 In the keywords.txt file each keyword must be on a new line.
+
 Example of file content
+
 `workout at home`
+
 `fitness`
+
 `fitness plans`
 
 
