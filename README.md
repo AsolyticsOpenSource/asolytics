@@ -109,6 +109,10 @@ Installation is from the PyPi repository
 ```sh
 pip3 install aso
 ```
+or
+```sh
+pip install aso
+```
 
 <!-- LINKS & IMAGES asolytics -->
 [contributors-shield]: https://img.shields.io/github/contributors/AsolyticsOpenSource/asolytics.svg?style=for-the-badge
