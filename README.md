@@ -79,7 +79,7 @@ Of course, no one software will fit all tasks related to ASO, because your needs
 
 All major frameworks/libraries and software that the Asolytics.app project uses during installation and operation. This list may be updated periodically
 
-* [![Next][firefox]][]
+* <img src="https://img.shields.io/badge/firefox-000000?style=for-the-badge&logo=firefox&logoColor=white" alt="firefox">
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
