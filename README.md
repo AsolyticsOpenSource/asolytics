@@ -168,7 +168,7 @@ Use this command to load keywords from a file
 asolytics --tracker '/path/keywords.txt' --file --id com.fiton.android --gl US --hl en 
 ```
 
-In the keywords.txt file each keyword must be on a new line.<br />
+In the `keywords.txt` file each keyword must be on a new line.<br />
 Example of file content<br />
 `workout at home`<br />
 `fitness`<br />
