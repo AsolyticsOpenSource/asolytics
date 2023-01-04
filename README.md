@@ -139,6 +139,7 @@ asolytics --key workout --gl AU --hl en
 ```sh
 asolytics --trends --gl AU --hl en
 ```
+[![Asolytics ASO Google Play trends][trends-screenshot]](https://github.com/AsolyticsOpenSource/asolytics/raw/main/screen-trends.png)
 
 <!-- LINKS & IMAGES asolytics -->
 [contributors-shield]: https://img.shields.io/github/contributors/AsolyticsOpenSource/asolytics.svg?style=for-the-badge
@@ -164,3 +165,5 @@ asolytics --trends --gl AU --hl en
 [help-screenshot]: screen-help.png
 
 [key-screenshot]: screen-key.png
+
+[trends-screenshot]: screen-trends.png
