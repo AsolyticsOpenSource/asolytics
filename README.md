@@ -174,7 +174,7 @@ Example of file content<br />
 `fitness`<br />
 `fitness plans`<br />
 
-7. You can extract keywords which are used in the metadata of any app. To do this you need to use the `--extract` switch and pass the bundleID of the app you want to analyze as a parameter. Asolytics will use artificial intelligence to recognize keywords in the app title, short description, full description and user reviews. In the table will be displayed the position of the app in the Google Play search for all the keywords found. To specify country and language use `--gl` and `--hl` keys
+7. You can extract keywords which are used in the metadata of any app. To do this you need to use the `--extract` key and pass the bundleID of the app you want to analyze as a parameter. Asolytics will use artificial intelligence to recognize keywords in the app title, short description, full description and user reviews. In the table will be displayed the position of the app in the Google Play search for all the keywords found. To specify country and language use `--gl` and `--hl` keys
 ```sh
 asolytics --extract com.fiton.android --gl US --hl en 
 ```
