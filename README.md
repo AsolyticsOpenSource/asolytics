@@ -75,6 +75,14 @@ Of course, no one software will fit all tasks related to ASO, because your needs
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+### Built With
+
+All major frameworks/libraries and software that the Asolytics.app project uses during installation and operation. This list may be updated periodically
+
+* [![Next][https://img.shields.io/badge/firefox-000000?style=for-the-badge&logo=firefox&logoColor=white]]
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- LINKS & IMAGES asolytics -->
 [contributors-shield]: https://img.shields.io/github/contributors/AsolyticsOpenSource/asolytics.svg?style=for-the-badge
 [contributors-url]: https://github.com/AsolyticsOpenSource/asolytics/graphs/contributors
