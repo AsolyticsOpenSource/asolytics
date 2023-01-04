@@ -124,14 +124,16 @@ pip install aso
 asolytics --help
 ```
 
-[![Asolytics ASO Tool Help][help-screenshot]]()
+[![Asolytics ASO Tool Help][help-screenshot]](https://github.com/AsolyticsOpenSource/asolytics/raw/main/screen-help.png)
 
 2. To specify a country code and language, use the `--gl` and `--hl` keys. To specify the country, use the two-character <a href="https://www.iso.org/obp/ui/#search">ISO country code</a>. To specify the language code, use the code from this <a href="https://support.google.com/googleplay/android-developer/table/4419860?hl=uk">table</a>. Example: `--gl AU --hl en` (country: Australia, language: English)
 
-3. To start the Google Play suggest parsing function, use the `--key`. Specify a search keyword as the parameter, the software will analyze the suggests and generate a table with all the derived keywords. The table will calculate the relative popularity of each derived keyword. To specify the country and language, use the `--gl` and `--hl` keys
+3. To start the Google Play suggest parsing function, use the `--key`. Specify a search keyword as the parameter, the software will analyze the suggests and generate a table with all the derived keywords. The table will calculate the relative popularity of each derived keyword. To specify the country and language, use the `--gl` and `--hl` keys.
 ```sh
 asolytics --key workout --gl AU --hl en
 ```
+
+[![Asolytics ASO suggest parsing][key-screenshot]](https://github.com/AsolyticsOpenSource/asolytics/raw/main/screen-key.png)
 
 <!-- LINKS & IMAGES asolytics -->
 [contributors-shield]: https://img.shields.io/github/contributors/AsolyticsOpenSource/asolytics.svg?style=for-the-badge
@@ -155,3 +157,5 @@ asolytics --key workout --gl AU --hl en
 [product-screenshot]: macbook.png
 
 [help-screenshot]: screen-help.png
+
+[key-screenshot]: screen-key.png
