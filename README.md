@@ -92,6 +92,8 @@ All major frameworks/libraries and software that the Asolytics.app project uses 
 <!-- GETTING STARTED -->
 ## Getting Started
 
+To install and run your local copy of the software, follow these simple steps.
+
 <!-- LINKS & IMAGES asolytics -->
 [contributors-shield]: https://img.shields.io/github/contributors/AsolyticsOpenSource/asolytics.svg?style=for-the-badge
 [contributors-url]: https://github.com/AsolyticsOpenSource/asolytics/graphs/contributors
