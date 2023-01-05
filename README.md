@@ -236,6 +236,25 @@ Telegram Chat: [@asolytics_chat](https://t.me/asolytics_chat)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
+
+If you are new to ASO you should read the following materials. These links should be useful to you
+
+* [App store optimization (ASO)](https://en.wikipedia.org/wiki/App_store_optimization)
+* [Get discovered on Google Play search](https://support.google.com/googleplay/android-developer/answer/4448378?hl=en)
+* [A Complete Guide to App Store Optimization](https://medium.com/udonis/a-complete-guide-to-app-store-optimization-e39d9abeca7b)
+* [ASO Google Play: Google Play Keyword Optimization](https://medium.com/android-news/aso-google-play-google-play-keyword-optimization-ed5540bfe3b1)
+
+If you have a few dollars, please support the struggle of the Urgench people for freedom and democracy. Today the Ukrainian people are defending all of Europe and Western values against evil and darkness!
+
+Use for this purpose:
+* [UNITED24](https://u24.gov.ua)
+* [Come Back Alive](https://savelife.in.ua/en)
+
+Or use another volunteer organization!
+Glory to Ukraine 🇺🇦
+
 <!-- LINKS & IMAGES asolytics -->
 [contributors-shield]: https://img.shields.io/github/contributors/AsolyticsOpenSource/asolytics.svg?style=for-the-badge
 [contributors-url]: https://github.com/AsolyticsOpenSource/asolytics/graphs/contributors
