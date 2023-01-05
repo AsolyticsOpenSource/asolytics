@@ -225,6 +225,17 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- CONTACT -->
+## Contact
+
+Website - [asolytics.app](https://asolytics.app)
+
+Telegram Channels: [@asolytics](https://t.me/asolytics)
+
+Telegram Chat: [@asolytics_chat](https://t.me/asolytics_chat)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- LINKS & IMAGES asolytics -->
 [contributors-shield]: https://img.shields.io/github/contributors/AsolyticsOpenSource/asolytics.svg?style=for-the-badge
 [contributors-url]: https://github.com/AsolyticsOpenSource/asolytics/graphs/contributors
