@@ -12,7 +12,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/AsolyticsOpenSource/asolytics">
-    <img src="logo.svg" alt="Logo" width="80" height="80">
+    <img src="https://github.com/AsolyticsOpenSource/asolytics/raw/main/logo.svg" alt="Logo" width="80" height="80">
   </a>
 
    <h3 align="center">Asolytics is an open source tool for ASO</h3>
@@ -20,7 +20,7 @@
   <p align="center">
     Instructions for installing and using the software
     <br />
-    <a href="https://pypi.org/project/test-test-test/"><strong>Page PyPi »</strong></a>
+    <a href="https://pypi.org/project/asolytics/"><strong>Page PyPi »</strong></a>
     <br />
     <br />
     <a href="https://github.com/AsolyticsOpenSource/asolytics/pulls">Pull requests</a>
@@ -107,11 +107,11 @@ To install Asolytics, open a terminal and run the following command.
 
 Installation is from the PyPi repository
 ```sh
-pip3 install aso
+pip3 install asolytics
 ```
 or
 ```sh
-pip install aso
+pip install asolytics
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
