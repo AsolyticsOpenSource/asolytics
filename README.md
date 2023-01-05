@@ -252,8 +252,7 @@ Use for this purpose:
 * [UNITED24](https://u24.gov.ua)
 * [Come Back Alive](https://savelife.in.ua/en)
 
-Or use another volunteer organization!
-Glory to Ukraine 🇺🇦
+Or use another volunteer organization!<br />Glory to Ukraine 🇺🇦
 
 <!-- LINKS & IMAGES asolytics -->
 [contributors-shield]: https://img.shields.io/github/contributors/AsolyticsOpenSource/asolytics.svg?style=for-the-badge
