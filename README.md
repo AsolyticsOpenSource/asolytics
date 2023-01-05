@@ -275,16 +275,16 @@ Or use another volunteer organization!<br />Glory to Ukraine 🇺🇦
 [telegram-shield]: https://img.shields.io/badge/-Telegram-black.svg?style=for-the-badge&logo=telegram&colorB=555
 [telegram-url]: https://t.me/asolytics
 
-[product-screenshot]: macbook.png
+[product-screenshot]: https://github.com/AsolyticsOpenSource/asolytics/raw/main/macbook.png
 
-[help-screenshot]: screen-help.png
+[help-screenshot]: https://github.com/AsolyticsOpenSource/asolytics/raw/main/screen-help.png
 
-[key-screenshot]: screen-key.png
+[key-screenshot]: https://github.com/AsolyticsOpenSource/asolytics/raw/main/screen-key.png
 
-[trends-screenshot]: screen-trends.png
+[trends-screenshot]: https://github.com/AsolyticsOpenSource/asolytics/raw/main/screen-trends.png
 
-[average-screenshot]: screen-average.png
+[average-screenshot]: https://github.com/AsolyticsOpenSource/asolytics/raw/main/screen-average.png
 
-[tracker-screenshot]: screen-tracker.png
+[tracker-screenshot]: https://github.com/AsolyticsOpenSource/asolytics/raw/main/screen-tracker.png
 
-[extract-screenshot]: screen-extract.png
+[extract-screenshot]: https://github.com/AsolyticsOpenSource/asolytics/raw/main/screen-extract.png
