@@ -32,7 +32,7 @@ setup (
  long_description_content_type="text/markdown",
  license='MIT',
  url='https://github.com/AsolyticsOpenSource/asolytics',
- download_url='https://github.com/AsolyticsOpenSource/asolytics/archive/refs/heads/main.zip',
+ download_url='https://github.com/AsolyticsOpenSource/asolytics/archive/refs/tags/aso.zip',
   dependency_links=dependency_links,
   author_email='asolytics@gmail.com',
   classifiers=[
