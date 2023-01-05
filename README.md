@@ -254,6 +254,8 @@ Use for this purpose:
 
 Or use another volunteer organization!<br />Glory to Ukraine 🇺🇦
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- LINKS & IMAGES asolytics -->
 [contributors-shield]: https://img.shields.io/github/contributors/AsolyticsOpenSource/asolytics.svg?style=for-the-badge
 [contributors-url]: https://github.com/AsolyticsOpenSource/asolytics/graphs/contributors
