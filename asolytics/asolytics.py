@@ -56,7 +56,7 @@ def action_parser_similar_app(bundleId):
                 item.link.replace("https://play.google.com/store/apps/details?id=", ""), 
                 item.simular_position(bundleId) + 1, 
                 "від " + str(item.installs[0]) + " до " + str(item.installs[1])])
-            pos.append(item.simular_position(bundleId))
+            pos.append(item.simular_position(bundleId) + 1)
             ins_x1.append(item.installs[0])
             ins_x2.append(item.installs[1])
     print(x.get_string(sortby=("Ваша позиція в схожих")))
