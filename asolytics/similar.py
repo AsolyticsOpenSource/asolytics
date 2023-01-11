@@ -106,7 +106,7 @@ def checking_similar_apps(bundleID = "", level = 0, browser:webdriver = None):
         links = []
         for el in elements:
             href = el.get_attribute("href")
-            if (not links.__contains__(href)) and (href.startswith("https://play.google.com/store/apps/details?id=")):
+            if (not links.__contains__(href)) and (href != None and href.startswith("https://play.google.com/store/apps/details?id=")):
                 links.append(href)
         for e in links: 
             print(e)
