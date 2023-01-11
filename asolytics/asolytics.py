@@ -41,7 +41,7 @@ options.add_argument("--headless")
 def action_parser_similar_app(bundleId):
     print(Fore.GREEN + "* * * Виконую * * *" + Fore.WHITE)
     print(Fore.RED + "Процес збору та аналізу даних може бути тривалим..." + Fore.WHITE)
-    apps = similar.parser_similar(bundleId)
+    apps = parser_similar(bundleId)
     
     x = PrettyTable()
     x.field_names = ["Назва додатку", "Bundle ID", "Ваша позиція в схожих", "Кількість завантажень"]
