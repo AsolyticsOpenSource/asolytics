@@ -16,6 +16,9 @@ from datetime import datetime
 from colorama import Fore
 import yake
 #tabulate, regex, networkx, jellyfish, segtok, yake
+import similar
+from similar import App
+import statistics
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--key', dest='key', type=str, help='Аналізувати ключову фразу')
@@ -28,12 +31,50 @@ parser.add_argument('--tracker', dest='tracker', type=str, help='Відстеж�
 parser.add_argument('--id', dest='id', type=str, help='Bundle ID - додатка який треба відстежити')
 parser.add_argument('--file', dest='file', action='store_true', help='Використовуйте цей ключ якщо параметр --tracker вказує на файл з ключовими словами (кожен ключ має бути з нової строки)')
 parser.add_argument('--extract', dest='extract', type=str, help='Виявити ключові слова які використовуються в метаданих застосунку. Аналізуються заголовок, назва розробника, короткий опис, повний опис, відгуки. (--extract org.telegram.messenger) ')
+parser.add_argument('--similar', dest='similar', type=str, help='Аналіз схожих додатків. Використовуйте цей ключ, щоб проаналізувати сторінки ваших конкурентів де ви відображаєтесь в схожих (--similar org.telegram.messenger) ')
 
 args = parser.parse_args()
 
 options = FirefoxOptions()
 options.add_argument("--headless")
 #browser = webdriver.Firefox(executable_path="/users/krv/driver/geckodriver", options=options)
+
+def action_parser_similar_app(bundleId):
+    print(Fore.GREEN + "* * * Виконую * * *" + Fore.WHITE)
+    print(Fore.RED + "Процес збору та аналізу даних може бути тривалим..." + Fore.WHITE)
+    apps = similar.parser_similar(bundleId)
+    
+    x = PrettyTable()
+    x.field_names = ["Назва додатку", "Bundle ID", "Ваша позиція в схожих", "Кількість завантажень"]
+
+    pos = []
+    ins_x1 = []
+    ins_x2 = []
+    for item in apps.values():
+        item:App = item
+        if(item.simular_position(bundleId) != -1):
+            x.add_row([item.name, 
+                item.link.replace("https://play.google.com/store/apps/details?id=", ""), 
+                item.simular_position(bundleId) + 1, 
+                "від " + str(item.installs[0]) + " до " + str(item.installs[1])])
+            pos.append(item.simular_position(bundleId))
+            ins_x1.append(item.installs[0])
+            ins_x2.append(item.installs[1])
+    print(x.get_string(sortby=("Ваша позиція в схожих")))
+    print("Проаналізовано додатків: " + str(len(apps.values())))
+    if(len(pos) > 0):
+        print("Середня позиція в підбірках: " + str(round(sum(pos) / len(pos))))
+        print("Медіана позицій в підбірках схожих додатків: " + str(statistics.median(pos)))
+        print("Середня кількість інсталів додатків, на сторінках яких ви відображаєтесь: від " + str(int(sum(ins_x1) / len(ins_x1))) + " до " + str(int(sum(ins_x2) / len(ins_x2))))
+    else:
+        print("Ваш додаток ніде не відображається в схожих!")
+    print("* * * Виконано! * * *")
+    return
+
+###################################################################################################################
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+###################################################################################################################
 
 def extract_keywords_metadata_app(bundleId):
 
@@ -124,7 +165,7 @@ def extract_keywords_metadata_app(bundleId):
                 relevant_keys.append([x[0], x[1], position])
 
     x = PrettyTable()
-    x.field_names = ["Ключову фраза", "Значущість в тексті", "Позиція в пошуку"]
+    x.field_names = ["Ключова фраза", "Значущість в тексті", "Позиція в пошуку"]
 
     for item in relevant_keys:
         x.add_row([item[0], item[1], item[2]])
@@ -250,7 +291,7 @@ def tracker_position_google_play():
         }        
 
     x = PrettyTable()
-    x.field_names = ["Ключову фраза", "Позиція в пошуку", "Входжень в назви", "Входжень в ім'я розробника"]
+    x.field_names = ["Ключова фраза", "Позиція в пошуку", "Входжень в назви", "Входжень в ім'я розробника"]
 
     for item in map_keywords.items():
         x.add_row([item[0], item[1]["position"] + 1, item[1]["conteins_title"], item[1]["conteins_company"]])
@@ -506,7 +547,7 @@ def trends_google_play(gl, hl):
             minus += 1
 
     x = PrettyTable()
-    x.field_names = ["Ключову фраза", "Відносна популярність"]
+    x.field_names = ["Ключова фраза", "Відносна популярність"]
 
     for item in map_popularity.items():
         x.add_row([item[0], item[1]])
@@ -525,6 +566,10 @@ def trends_google_play(gl, hl):
 ###################################################################################################################
 
 def main():
+    if(args.similar != None):
+        action_parser_similar_app(args.similar)
+        sys.exit()
+
     if(args.extract != None):
         extract_keywords_metadata_app(args.extract)
         sys.exit()
@@ -638,7 +683,7 @@ def main():
     list5 = google_suggests(list4, 15)
 
     x = PrettyTable()
-    x.field_names = ["Ключову фраза", "Відносна популярність"]
+    x.field_names = ["Ключова фраза", "Відносна популярність"]
 
     for item in map_popularity.items():
         x.add_row([item[0], item[1]])
