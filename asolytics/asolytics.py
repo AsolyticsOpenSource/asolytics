@@ -16,8 +16,7 @@ from datetime import datetime
 from colorama import Fore
 import yake
 #tabulate, regex, networkx, jellyfish, segtok, yake
-import similar
-from similar import App
+from asolytics.similar import App, parser_similar
 import statistics
 
 parser = argparse.ArgumentParser()
