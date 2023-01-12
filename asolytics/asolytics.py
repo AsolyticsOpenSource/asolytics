@@ -504,7 +504,7 @@ def average_install_in_Google_Play(bundleID, gl):
     for stat in statistics:
         if(stat.text.__contains__("Top Countries / Regions")):
             countries = stat.text.replace("Top Countries / Regions\n", "")
-            countries = countries.replace("\n,\n", ", ").replace("Russia", "Russian Terrorist State")
+            countries = countries.replace("\n,\n", ", ")
             break
 
     if(countries == None):
