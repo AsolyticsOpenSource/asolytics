@@ -16,8 +16,13 @@ from datetime import datetime
 from colorama import Fore
 import yake
 #tabulate, regex, networkx, jellyfish, segtok, yake
-from asolytics.similar import App, parser_similar
 import statistics
+try:
+    from asolytics.similar import App, parser_similar
+    from asolytics.local import Localization_of_naming
+except:
+    from similar import App, parser_similar
+    from local import Localization_of_naming
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--key', dest='key', type=str, help='Аналізувати ключову фразу')
@@ -29,14 +34,44 @@ parser.add_argument('--average', dest='average', type=str, help='Середня 
 parser.add_argument('--tracker', dest='tracker', type=str, help='Відстежити позиції додатка в пошуку (--tracker "вікторини;ігри про зомбі;стрілялки онлайн" )')
 parser.add_argument('--id', dest='id', type=str, help='Bundle ID - додатка який треба відстежити')
 parser.add_argument('--file', dest='file', action='store_true', help='Використовуйте цей ключ якщо параметр --tracker вказує на файл з ключовими словами (кожен ключ має бути з нової строки)')
-parser.add_argument('--extract', dest='extract', type=str, help='Виявити ключові слова які використовуються в метаданих застосунку. Аналізуються заголовок, назва розробника, короткий опис, повний опис, відгуки. (--extract org.telegram.messenger) ')
-parser.add_argument('--similar', dest='similar', type=str, help='Аналіз схожих додатків. Використовуйте цей ключ, щоб проаналізувати сторінки ваших конкурентів де ви відображаєтесь в схожих (--similar org.telegram.messenger) ')
+parser.add_argument('--extract', dest='extract', type=str, help='Виявити ключові слова які використовуються в метаданих застосунку. Аналізуються заголовок, назва розробника, короткий опис, повний опис, відгуки. (--extract org.telegram.messenger)')
+parser.add_argument('--similar', dest='similar', type=str, help='Аналіз схожих додатків. Використовуйте цей ключ, щоб проаналізувати сторінки ваших конкурентів де ви відображаєтесь в схожих (--similar org.telegram.messenger)')
+parser.add_argument('--local', dest='local', type=str, help='Аналіз локалізації неймінга. Мови на які перекладено сторінку додатку в Goole Play (--local org.thoughtcrime.securesms)')
 
 args = parser.parse_args()
 
 options = FirefoxOptions()
 options.add_argument("--headless")
 #browser = webdriver.Firefox(executable_path="/users/krv/driver/geckodriver", options=options)
+
+###################################################################################################################
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+###################################################################################################################
+
+def localization_analysis(bundleId):
+    print(Fore.GREEN + "* * * Виконую * * *" + Fore.WHITE)
+    print("Bundle ID: " + bundleId)
+    lon = Localization_of_naming()
+    elements = lon.start(bundleId)
+
+    x = PrettyTable()
+    x.field_names = ["Локаль Google Play", "Назва додатку", "Мова яка використовується"]
+    names = []
+    for element in elements:
+        x.add_row([element[0], element[1], element[2]])
+        names.append(element[1])
+    print(x.get_string(sortby=("Мова яка використовується")))
+    list_set = set(names)
+    unique_list = (list(list_set))
+    print("Кількість використаних мов: " + str(len(unique_list)))
+    print("* * * Виконано! * * *")
+    return
+
+###################################################################################################################
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+###################################################################################################################
 
 def action_parser_similar_app(bundleId):
     print(Fore.GREEN + "* * * Виконую * * *" + Fore.WHITE)
@@ -210,7 +245,7 @@ def tracker_position_google_play():
 
     #, options=options
     browser = webdriver.Firefox(service = FirefoxService(GeckoDriverManager().install()), options=options)
-    browser.implicitly_wait(10)
+    browser.implicitly_wait(3)
     browser.maximize_window()
 
     browser.get("https://play.google.com/store/apps/details?id=" + bundleId + "&hl=" + hl + "&gl=" + gl)
@@ -565,6 +600,10 @@ def trends_google_play(gl, hl):
 ###################################################################################################################
 
 def main():
+    if(args.local != None):
+        localization_analysis(args.local)
+        sys.exit()
+
     if(args.similar != None):
         action_parser_similar_app(args.similar)
         sys.exit()

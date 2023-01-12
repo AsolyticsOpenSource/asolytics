@@ -33,3 +33,4 @@ webdriver-manager==3.8.5
 wsproto==1.2.0
 yake==0.4.8
 zipp==3.11.0
+langdetect==1.0.9
