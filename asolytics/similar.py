@@ -8,8 +8,12 @@ from selenium.webdriver.firefox.service import Service as FirefoxService
 from typing import List
 import time
 import copy
+from datetime import datetime
 
 class App:
+
+    release_date:datetime = None
+
     def __init__(self, link, name = "", installs = [], level = 0, similar_list = []) -> None:
         self.link = link
         self.name = name
@@ -50,14 +54,38 @@ def parser_similar(bundleID = "org.telegram.messenger") -> dict:
     in_depth(app, 1, 256)
     lst = copy.copy(map_apps).values()
     for i, a in enumerate(lst):
-        in_depth(a, 2, 128)
+        in_depth(a, 2, 16)
         print(str(i + 1) + " / " + str(len(lst)))
+    for item_app in map_apps.values():
+        item_app:App = item_app
+        if(item_app.simular_position(bundleID) != -1):
+            item_app.release_date = get_release_date(browser, item_app.link)
+            print(item_app.release_date)
 
     browser.quit()
     return map_apps
 
+def get_release_date(browser:webdriver.Firefox, link:str) -> datetime:
+    browser.get(link + "&hl=en&gl=US")
+    button_deteils: List[WebElement] = browser.find_elements(By.CLASS_NAME, "VfPpkd-Bz112c-LgbsSe")
+    btn_deteils = find_element_by_attribute_value(button_deteils, "aria-label", "See more information on About this app")
+    if(btn_deteils == None):
+        btn_deteils = find_element_by_attribute_value(button_deteils, "aria-label", "See more information on About this game")
+    if(btn_deteils != None):
+        btn_deteils.click()
+        time.sleep(5)
+        deteils: List[WebElement] = browser.find_elements(By.CLASS_NAME, "sMUprd")
+        #Released on
+        release_str = None
+        for dts in deteils:
+            if dts.text.__contains__("Released on"):
+                release_str = dts.text.replace("Released on\n", "")
+                dt = datetime.strptime(release_str, '%b %d, %Y')
+                return dt
+    return None
+
 def checking_similar_apps(bundleID = "", level = 0, browser:webdriver = None): 
-    browser.get("https://play.google.com/store/apps/details?id="+ bundleID +"&c=apps&hl=en&gl=US")
+    browser.get("https://play.google.com/store/apps/details?id="+ bundleID +"&hl=en&gl=US")
     title_div: List[WebElement] = browser.find_elements(By.CLASS_NAME, "Fd93Bb")
     title = None
     if(len(title_div) > 0):
@@ -123,6 +151,7 @@ def checking_similar_apps(bundleID = "", level = 0, browser:webdriver = None):
 
 def find_element_by_attribute_value(elements:List[WebElement], attribute_name:str, attribute_value:str) -> WebElement:
     for el in elements:
-        if(el.get_attribute(attribute_name).lower() == attribute_value.lower()):
+        attr = el.get_attribute(attribute_name)
+        if(attr != None and attr.lower() == attribute_value.lower()):
             return el
     return None

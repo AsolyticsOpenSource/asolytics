@@ -9,7 +9,7 @@ import argparse
 import sys
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.firefox.service import Service as FirefoxService
-from prettytable import PrettyTable
+from prettytable import PrettyTable, ALL
 from typing import List
 from decimal import Decimal
 from datetime import datetime
@@ -79,27 +79,40 @@ def action_parser_similar_app(bundleId):
     apps = parser_similar(bundleId)
     
     x = PrettyTable()
-    x.field_names = ["Назва додатку", "Bundle ID", "Ваша позиція в схожих", "Кількість завантажень"]
+    x.field_names = ["Назва додатку / Bundle ID", "Ваша позиція в схожих", "Кількість завантажень", "Завантажень на добу"]
 
     pos = []
     ins_x1 = []
     ins_x2 = []
+    ins_x1_daily = []
+    ins_x2_daily = []
     for item in apps.values():
         item:App = item
         if(item.simular_position(bundleId) != -1):
-            x.add_row([item.name, 
-                item.link.replace("https://play.google.com/store/apps/details?id=", ""), 
+            x1 = 0
+            x2 = 0
+            if(item.release_date != None):
+                seconds = datetime.now().timestamp() - item.release_date.timestamp()
+                days = seconds / (24 * 3600)
+                x1 = int(item.installs[0] / days)
+                x2 = int(item.installs[1] / days)
+            x.add_row([item.name + "\n" + item.link.replace("https://play.google.com/store/apps/details?id=", ""),  
                 item.simular_position(bundleId) + 1, 
-                "від " + str(item.installs[0]) + " до " + str(item.installs[1])])
+                "від " + str(item.installs[0]) + " до " + str(item.installs[1]), 
+                "від " + str(x1) + " до " + str(x2)])
             pos.append(item.simular_position(bundleId) + 1)
             ins_x1.append(item.installs[0])
             ins_x2.append(item.installs[1])
+            ins_x1_daily.append(x1)
+            ins_x2_daily.append(x2)
+    x.hrules = ALL
     print(x.get_string(sortby=("Ваша позиція в схожих")))
     print("Проаналізовано додатків: " + str(len(apps.values())))
     if(len(pos) > 0):
         print("Середня позиція в підбірках: " + str(round(sum(pos) / len(pos))))
         print("Медіана позицій в підбірках схожих додатків: " + str(statistics.median(pos)))
         print("Середня кількість інсталів додатків, на сторінках яких ви відображаєтесь: від " + str(int(sum(ins_x1) / len(ins_x1))) + " до " + str(int(sum(ins_x2) / len(ins_x2))))
+        print("Середня кількість інсталів додатків на добу, на сторінках яких ви відображаєтесь: від " + str(int(sum(ins_x1_daily) / len(ins_x1_daily))) + " до " + str(int(sum(ins_x2_daily) / len(ins_x2_daily))))
     else:
         print("Ваш додаток ніде не відображається в схожих!")
     print("* * * Виконано! * * *")
@@ -398,9 +411,9 @@ def average_install_in_Google_Play(bundleID, gl):
         else:
             review_value = Decimal(review_str)
 
-        print("Загальна кількість відгуків: " + str(review_value))
+        print("Загальна кількість відгуків: " + str(review_value))
     except:
-        print("Загальна кількість відгуків: " + str(review_value))
+        print("Загальна кількість відгуків: " + str(review_value))
 
     installs: List[WebElement] = browser.find_elements(By.CLASS_NAME, "wVqUob")
 

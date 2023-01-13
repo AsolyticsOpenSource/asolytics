@@ -90,7 +90,7 @@ class Localization_of_naming:
         "sl",
         "es-419",
         "es-ES",
-        "es-US"
+        "es-US",
         "sw",
         "sv-SE",
         "ta-IN",
