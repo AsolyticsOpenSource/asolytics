@@ -6,7 +6,9 @@
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 [![Telegram][telegram-shield]][telegram-url]
-
+[![Downloads month][month-download-shield]][month-download-url]
+[![Downloads week][week-download-shield]][week-download-url]
+[![Downloads day][day-download-shield]][day-download-url]
 
 
 <br />
@@ -274,6 +276,15 @@ Or use another volunteer organization!<br />Glory to Ukraine 🇺🇦
 
 [telegram-shield]: https://img.shields.io/badge/-Telegram-black.svg?style=for-the-badge&logo=telegram&colorB=555
 [telegram-url]: https://t.me/asolytics
+
+[day-download-shield]: https://img.shields.io/pypi/dd/asolytics?style=for-the-badge
+[day-download-url]: https://pypi.org/project/asolytics
+
+[month-download-shield]: https://img.shields.io/pypi/dm/asolytics?style=for-the-badge
+[month-download-url]: https://pypi.org/project/asolytics
+
+[week-download-shield]: https://img.shields.io/pypi/dw/asolytics?style=for-the-badge
+[week-download-url]: https://pypi.org/project/asolytics
 
 [product-screenshot]: https://github.com/AsolyticsOpenSource/asolytics/raw/main/macbook.png
 
