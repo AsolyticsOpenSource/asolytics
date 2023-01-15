@@ -10,7 +10,7 @@ idna==3.4
 importlib-metadata==6.0.0
 jellyfish==0.9.0
 networkx==2.6.3
-numpy==1.21.0
+numpy==1.24.1
 outcome==1.2.0
 packaging==22.0
 prettytable==3.5.0
