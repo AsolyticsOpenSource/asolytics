@@ -20,9 +20,11 @@ import statistics
 try:
     from asolytics.similar import App, parser_similar
     from asolytics.local import Localization_of_naming
+    from asolytics.reviews import App_reviews, Featured_reviews
 except:
     from similar import App, parser_similar
     from local import Localization_of_naming
+    from reviews import App_reviews, Featured_reviews
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--key', dest='key', type=str, help='Аналізувати ключову фразу')
@@ -37,12 +39,40 @@ parser.add_argument('--file', dest='file', action='store_true', help='Викор
 parser.add_argument('--extract', dest='extract', type=str, help='Виявити ключові слова які використовуються в метаданих застосунку. Аналізуються заголовок, назва розробника, короткий опис, повний опис, відгуки. (--extract org.telegram.messenger)')
 parser.add_argument('--similar', dest='similar', type=str, help='Аналіз схожих додатків. Використовуйте цей ключ, щоб проаналізувати сторінки ваших конкурентів де ви відображаєтесь в схожих (--similar org.telegram.messenger)')
 parser.add_argument('--local', dest='local', type=str, help='Аналіз локалізації неймінга. Мови на які перекладено сторінку додатку в Goole Play (--local org.thoughtcrime.securesms)')
+parser.add_argument('--reviews', dest='reviews', type=str, help='Аналізувати зафічерені відгуки в різних локалях. Відгуки які знаходяться в топі  (--reviews org.thoughtcrime.securesms)')
 
 args = parser.parse_args()
 
 options = FirefoxOptions()
 options.add_argument("--headless")
 #browser = webdriver.Firefox(executable_path="/users/krv/driver/geckodriver", options=options)
+
+###################################################################################################################
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+###################################################################################################################
+
+def reviews_analysis(bundleId):
+    print(Fore.GREEN + "* * * Виконую * * *" + Fore.WHITE)
+    print("Bundle ID: " + bundleId)
+    fr = Featured_reviews()
+    elements = fr.start(bundleId)
+
+    x = PrettyTable()
+    x.field_names = ["Локаль Google Play", "Відгук", "Оцінка"]
+
+    all_rate = []
+    for element in elements:
+        for i, review in enumerate(element.reviews):
+            x.add_row([element.hl, review, element.rates[i]])
+            all_rate.append(element.rates[i])
+    x.hrules = ALL
+    x._max_width["Відгук"] = 100
+    print(x.get_string(sortby=("Локаль Google Play")))
+    if(len(all_rate) > 0):
+        print("Середня оцінка по фічеру відгуків: " + str(round(sum(all_rate) / len(all_rate), 1)))
+
+    print("* * * Виконано! * * *")
 
 ###################################################################################################################
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -613,6 +643,10 @@ def trends_google_play(gl, hl):
 ###################################################################################################################
 
 def main():
+    if(args.reviews != None):
+        reviews_analysis(args.reviews)
+        sys.exit()
+
     if(args.local != None):
         localization_analysis(args.local)
         sys.exit()
