@@ -40,6 +40,7 @@ parser.add_argument('--extract', dest='extract', type=str, help='Виявити 
 parser.add_argument('--similar', dest='similar', type=str, help='Аналіз схожих додатків. Використовуйте цей ключ, щоб проаналізувати сторінки ваших конкурентів де ви відображаєтесь в схожих (--similar org.telegram.messenger)')
 parser.add_argument('--local', dest='local', type=str, help='Аналіз локалізації неймінга. Мови на які перекладено сторінку додатку в Goole Play (--local org.thoughtcrime.securesms)')
 parser.add_argument('--reviews', dest='reviews', type=str, help='Аналізувати зафічерені відгуки в різних локалях. Відгуки які знаходяться в топі  (--reviews org.thoughtcrime.securesms)')
+parser.add_argument('--csv', dest='csv', type=str, help='Використовуйте цю опцію, щоб зберегти результат у файл, csv можна відкрити за допомогою електронних таблиць, наприклад Excel (--csv file.csv)')
 
 args = parser.parse_args()
 
@@ -72,6 +73,9 @@ def reviews_analysis(bundleId):
     if(len(all_rate) > 0):
         print("Середня оцінка по фічеру відгуків: " + str(round(sum(all_rate) / len(all_rate), 1)))
 
+    if(args.csv != None):
+        save_to_file_csv(x, args.csv)
+
     print("* * * Виконано! * * *")
 
 ###################################################################################################################
@@ -95,6 +99,8 @@ def localization_analysis(bundleId):
     list_set = set(names)
     unique_list = (list(list_set))
     print("Кількість використаних мов: " + str(len(unique_list)))
+    if(args.csv != None):
+        save_to_file_csv(x, args.csv)
     print("* * * Виконано! * * *")
     return
 
@@ -145,6 +151,8 @@ def action_parser_similar_app(bundleId):
         print("Середня кількість інсталів додатків на добу, на сторінках яких ви відображаєтесь: від " + str(int(sum(ins_x1_daily) / len(ins_x1_daily))) + " до " + str(int(sum(ins_x2_daily) / len(ins_x2_daily))))
     else:
         print("Ваш додаток ніде не відображається в схожих!")
+    if(args.csv != None):
+        save_to_file_csv(x, args.csv)
     print("* * * Виконано! * * *")
     return
 
@@ -252,6 +260,9 @@ def extract_keywords_metadata_app(bundleId):
     print("Кількість знайдених ключових слів: " + str(len(relevant_keys)))
     print("Коефіцієнт індексації метаданих (країна - " + gl +"; мова - " + hl +"): "
          + str(int(100 * len(relevant_keys)/len(list_keywords))) + "%")
+
+    if(args.csv != None):
+        save_to_file_csv(x, args.csv)
 
     print("* * * Виконано! * * *")
             
@@ -374,6 +385,9 @@ def tracker_position_google_play():
         x.add_row([item[0], item[1]["position"] + 1, item[1]["conteins_title"], item[1]["conteins_company"]])
 
     print(x.get_string(sortby=("Позиція в пошуку")))
+
+    if(args.csv != None):
+        save_to_file_csv(x, args.csv)
 
     print("* * * Виконано! * * *")
 
@@ -631,11 +645,27 @@ def trends_google_play(gl, hl):
 
     print(x.get_string(sortby=("Відносна популярність"), reversesort=True)) 
     print("Зібрано ключових слів: " + str(len(map_popularity)))
+    if(args.csv != None):
+        save_to_file_csv(x, args.csv)
     print("* * * Завершено! * * *")
 
     browser.quit()
             
     return
+
+###################################################################################################################
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+###################################################################################################################
+
+def save_to_file_csv(x:PrettyTable, path:str):
+    try:
+        with open(path, 'w', newline='') as f_output:
+            f_output.write(x.get_csv_string())
+        f_output.close()
+        print("Збережено в файл: {}".format(os.path.abspath(path)))
+    except Exception as e:
+        print(e.args)
 
 ###################################################################################################################
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -777,6 +807,8 @@ def main():
 
     print("Критерій популярності ключа (" + keyword + ") / Кількість похідних саджестів: " + str(len(map)))
 
+    if(args.csv != None):
+        save_to_file_csv(x, args.csv)
     print("* * * Завершено! * * *")
 
     browser.quit()
