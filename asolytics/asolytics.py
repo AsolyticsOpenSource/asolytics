@@ -21,10 +21,12 @@ try:
     from asolytics.similar import App, parser_similar
     from asolytics.local import Localization_of_naming
     from asolytics.reviews import App_reviews, Featured_reviews
+    from asolytics.tags import Tag, Google_play_tags, App_tags
 except:
     from similar import App, parser_similar
     from local import Localization_of_naming
     from reviews import App_reviews, Featured_reviews
+    from tags import Tag, Google_play_tags, App_tags
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--key', dest='key', type=str, help='Аналізувати ключову фразу')
@@ -41,12 +43,62 @@ parser.add_argument('--similar', dest='similar', type=str, help='Аналіз с
 parser.add_argument('--local', dest='local', type=str, help='Аналіз локалізації неймінга. Мови на які перекладено сторінку додатку в Goole Play (--local org.thoughtcrime.securesms)')
 parser.add_argument('--reviews', dest='reviews', type=str, help='Аналізувати зафічерені відгуки в різних локалях. Відгуки які знаходяться в топі  (--reviews org.thoughtcrime.securesms)')
 parser.add_argument('--csv', dest='csv', type=str, help='Використовуйте цю опцію, щоб зберегти результат у файл, csv можна відкрити за допомогою електронних таблиць, наприклад Excel (--csv file.csv)')
+parser.add_argument('--tags', dest='tags', type=str, help='Інструмент аналізу тегів в Google Play, перевірка індексації додатку по тегам (--tags org.thoughtcrime.securesms)')
 
 args = parser.parse_args()
 
 options = FirefoxOptions()
 options.add_argument("--headless")
 #browser = webdriver.Firefox(executable_path="/users/krv/driver/geckodriver", options=options)
+
+###################################################################################################################
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+###################################################################################################################
+
+def tags_analysis(bundleId):
+    print(Fore.GREEN + "* * * Виконую * * *" + Fore.WHITE)
+    print("Bundle ID: " + bundleId)
+    if args.hl != None:
+        hl = args.hl
+        print("Код мови: " + hl)
+    else:
+        hl = "en"
+        print("Код мови: " + hl)
+
+    if args.gl != None:
+        gl = args.gl
+        print("Код країни: " + gl)
+    else:
+        gl = "US"
+        print("Код країни: " + gl)
+
+    gpt = Google_play_tags()
+    tag_labels = gpt.start(bundleId, gl, hl)
+
+    x = PrettyTable()
+    x.field_names = ["Тег", "Тип тегу", "Ключ тегу", "Значущість для кластера", "Кількість додатків", "Індексація по тегу"]
+
+    for tag_label in tag_labels:
+        tag = gpt.find_by_name(tag_label)
+        x.add_row([
+            tag_label,
+            tag.type_tag(),
+            tag.get_keyword(),
+            gpt.average_position(tag_label), 
+            gpt.count_apps(tag_label),
+            gpt.get_index_tag(tag_label)
+        ])
+    x.hrules = ALL
+    x._max_width["Тег"] = 30
+    x._max_width["Ключ тегу"] = 30
+    print(x.get_string(sortby=("Значущість для кластера")))
+
+    if(args.csv != None):
+        save_to_file_csv(x, args.csv)
+
+    print("Всього проаналізовано додатків: {}".format(gpt.count_apps_all))
+    print("* * * Виконано! * * *")
 
 ###################################################################################################################
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -673,6 +725,10 @@ def save_to_file_csv(x:PrettyTable, path:str):
 ###################################################################################################################
 
 def main():
+    if(args.tags != None):
+        tags_analysis(args.tags)
+        sys.exit()
+
     if(args.reviews != None):
         reviews_analysis(args.reviews)
         sys.exit()
