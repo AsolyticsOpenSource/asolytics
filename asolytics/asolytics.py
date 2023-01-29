@@ -22,11 +22,13 @@ try:
     from asolytics.local import Localization_of_naming
     from asolytics.reviews import App_reviews, Featured_reviews
     from asolytics.tags import Tag, Google_play_tags, App_tags
+    from asolytics.tracker import Tracker_google_play
 except:
     from similar import App, parser_similar
     from local import Localization_of_naming
     from reviews import App_reviews, Featured_reviews
     from tags import Tag, Google_play_tags, App_tags
+    from tracker import Tracker_google_play
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--key', dest='key', type=str, help='Аналізувати ключову фразу')
@@ -349,22 +351,15 @@ def tracker_position_google_play():
         gl = "US"
         print("Код країни: " + gl)
 
-    #, options=options
-    browser = webdriver.Firefox(service = FirefoxService(GeckoDriverManager().install()), options=options)
-    browser.implicitly_wait(3)
-    browser.maximize_window()
-
-    browser.get("https://play.google.com/store/apps/details?id=" + bundleId + "&hl=" + hl + "&gl=" + gl)
+    tgp = Tracker_google_play()
 
     try :
-        page_app: WebElement = browser.find_element(By.CLASS_NAME, "Fd93Bb")
-        print(Fore.GREEN + "Назва додатка: " + page_app.text + Fore.WHITE)
+        name = tgp.get_name_app(bundleId, hl, gl)
+        print(Fore.GREEN + "Назва додатка: " + name + Fore.WHITE)
     except:
         print("Додаток з таким bundleID ("+ bundleId +") не знайдено в Google Play")
-        browser.quit()
+        tgp.close_browser()
         return
-
-    map_keywords = {}
 
     if(not args.file):
         keywords = args.tracker.split(";")
@@ -381,69 +376,64 @@ def tracker_position_google_play():
             print(e.args)
 
     if(len(keywords) == 0):
-        browser.quit()
+        tgp.close_browser()
         return
 
-    for k in keywords:
-        browser.get("https://play.google.com/store/search?q="+ k +"&c=apps&hl=" + hl + "&gl=" + gl)
-        print(k)
-
-        apps = browser.find_elements(By.CLASS_NAME, "Si6A0c")
-
-        links_recommended = []
-
-        try:
-            recommended = browser.find_element(By.CLASS_NAME, "zuJxTd")
-            rapps = recommended.find_elements(By.CLASS_NAME, "Si6A0c")
-
-            for app in rapps:
-                link = app.get_attribute("href")
-                links_recommended.append(link)
-        except Exception as e:
-            print("")
-
-        apps_list = []
-
-        for app in apps:
-            link = app.get_attribute("href")
-            if(not links_recommended.__contains__(link)):
-                try:
-                    app_name = app.find_element(By.CLASS_NAME, "DdYX5").text
-                    company = app.find_element(By.CLASS_NAME, "wMUdtb").text
-                    apps_list.append({"link": link, "app_name": app_name, "company": company})
-                except:
-                    break
-
-        conteins_title = 0
-        conteins_company = 0
-        position = -1
-        for index, app in enumerate(apps_list):
-            my_link = "https://play.google.com/store/apps/details?id=" + bundleId
-            if(app["link"] == my_link):
-                position = index
-            conteins_title += str(app["app_name"]).lower().count(k.lower())
-            conteins_company += str(app["company"]).lower().count(k.lower())
-
-        map_keywords[k] = { 
-            "position": position,
-            "conteins_title": conteins_title,
-            "conteins_company": conteins_company,
-        }        
+    map_keywords = tgp.start(bundleId, gl, hl, keywords)
 
     x = PrettyTable()
-    x.field_names = ["Ключова фраза", "Позиція в пошуку", "Входжень в назви", "Входжень в ім'я розробника"]
+    history = tgp.history(map_keywords)
+    count_days_in_history = tgp.count_day_in_history(history, map_keywords.keys())
+    if count_days_in_history > 0:
+        x.field_names = ["Ключова фраза", "Позиція в пошуку", "Позиція вчора", "Змінилася", "Входжень в назви", "Входжень в ім'я розробника"]
 
-    for item in map_keywords.items():
-        x.add_row([item[0], item[1]["position"] + 1, item[1]["conteins_title"], item[1]["conteins_company"]])
+        for item in map_keywords.items():
+            position_day1 = tgp.find_position_by_day(history, item[0], 1)
+            x.add_row([item[0], 
+                item[1]["position"] + 1,
+                position_day1 + 1, 
+                (item[1]["position"] + 1) - (position_day1 + 1),
+                item[1]["conteins_title"], 
+                item[1]["conteins_company"]])
+    else:
+        x.field_names = ["Ключова фраза", "Позиція в пошуку", "Входжень в назви", "Входжень в ім'я розробника"]
+
+        for item in map_keywords.items():
+            x.add_row([item[0], item[1]["position"] + 1, item[1]["conteins_title"], item[1]["conteins_company"]])
 
     print(x.get_string(sortby=("Позиція в пошуку")))
 
+    x1 = PrettyTable()
+    if count_days_in_history > 0:
+        #x.field_names = ["Ключова фраза", "Позиція в пошуку", "Змінилася", "Входжень в назви", "Входжень в ім'я розробника"]
+        header = ["Ключова фраза"]
+        for i in range(count_days_in_history, 0, -1): header.append("День {}".format(i))
+        header.append("Позиція в пошуку")
+        header.append("Змінилася")
+        header.append("Входжень в назви")
+        header.append("Входжень в ім'я розробника")
+        x1.field_names = header
+
+        for item in map_keywords.items():
+            position_day1 = tgp.find_position_by_day(history, item[0], 1)
+            row = [item[0]]
+            for i in range(count_days_in_history, 0, -1): row.append(tgp.find_position_by_day(history, item[0], i) + 1)
+            row.append(item[1]["position"] + 1)
+            row.append((item[1]["position"] + 1) - (position_day1 + 1))
+            row.append(item[1]["conteins_title"])
+            row.append(item[1]["conteins_company"])
+            x1.add_row(row)
+    else:
+        x1.field_names = ["Ключова фраза", "Позиція в пошуку", "Входжень в назви", "Входжень в ім'я розробника"]
+        for item in map_keywords.items():
+            x1.add_row([item[0], item[1]["position"] + 1, item[1]["conteins_title"], item[1]["conteins_company"]])
+
     if(args.csv != None):
-        save_to_file_csv(x, args.csv)
+        save_to_file_csv(x1, args.csv)
 
     print("* * * Виконано! * * *")
 
-    browser.quit()
+    tgp.close_browser()
     return
 
 ###################################################################################################################
