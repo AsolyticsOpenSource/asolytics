@@ -702,7 +702,7 @@ def trends_google_play(gl, hl):
 
 def save_to_file_csv(x:PrettyTable, path:str):
     try:
-        with open(path, 'w', newline='') as f_output:
+        with open(path, 'w', newline='', encoding='utf-8') as f_output:
             f_output.write(x.get_csv_string())
         f_output.close()
         print("Збережено в файл: {}".format(os.path.abspath(path)))
