@@ -392,7 +392,7 @@ def tracker_position_google_play():
             x.add_row([item[0], 
                 item[1]["position"] + 1,
                 position_day1 + 1, 
-                ((item[1]["position"] + 1) - (position_day1 + 1)) * (-1 if position_day1 > -1 else 1),
+                ((item[1]["position"] + 1) - (position_day1 + 1)) * (1 if position_day1 > -1 else -1),
                 item[1]["conteins_title"], 
                 item[1]["conteins_company"]])
     else:
@@ -419,7 +419,7 @@ def tracker_position_google_play():
             row = [item[0]]
             for i in range(count_days_in_history, 0, -1): row.append(tgp.find_position_by_day(history, item[0], i) + 1)
             row.append(item[1]["position"] + 1)
-            row.append(((item[1]["position"] + 1) - (position_day1 + 1)) * (-1 if position_day1 > -1 else 1))
+            row.append(((item[1]["position"] + 1) - (position_day1 + 1)) * (1 if position_day1 > -1 else -1))
             row.append(item[1]["conteins_title"])
             row.append(item[1]["conteins_company"])
             x1.add_row(row)

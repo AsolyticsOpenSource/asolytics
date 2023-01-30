@@ -18,7 +18,7 @@ dependency_links = [x.strip().replace('git+', '') for x in all_reqs if 'git+' no
 setup (
  name = 'asolytics',
  description = 'ASO automation software tool on Google Play. Trend analysis, keyword popularity analysis and evaluation, competitor app analysis and keyword parsing.',
- version = '1.1.6',
+ version = '1.1.7',
  packages = find_packages(), # list of all packages
  install_requires = install_requires,
  python_requires='>=3.7', # any python greater than 2.7
