@@ -368,7 +368,7 @@ def tracker_position_google_play():
         keywords = []
         try:
             path = args.tracker
-            file = open(path, "r")
+            file = open(path, "r", encoding='utf-8')
             for keyword in file:
                 keywords.append(keyword.replace("\n", ""))
             file.close()
