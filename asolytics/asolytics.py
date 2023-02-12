@@ -653,6 +653,8 @@ def trends_google_play(gl, hl):
         alphabet = "aábcčdďeéěfghciíjklmnňoópqrřsštťuúůvwxyýzž"
     elif hl == "el":
         alphabet = "αβγδεζηθικλμνξοπρσςτυφχψω"
+    elif hl == "it":
+        alphabet = "abcdefghilmnopqrstuvzùúòóìíèéà"
     else:
         print(hl + " - ця мова поки що не підтримується")
         sys.exit(0)
