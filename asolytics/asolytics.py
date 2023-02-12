@@ -114,15 +114,16 @@ def reviews_analysis(bundleId):
     elements = fr.start(bundleId)
 
     x = PrettyTable()
-    x.field_names = ["Локаль Google Play", "Відгук", "Оцінка"]
+    x.field_names = ["Локаль Google Play", "Дата публікації" ,"Відгук", "Оцінка", "Відповідь розробника"]
 
     all_rate = []
     for element in elements:
         for i, review in enumerate(element.reviews):
-            x.add_row([element.hl, review, element.rates[i]])
+            x.add_row([element.hl, element.pub_dates[i], review, element.rates[i], element.dev_response[i]])
             all_rate.append(element.rates[i])
     x.hrules = ALL
-    x._max_width["Відгук"] = 100
+    x._max_width["Відгук"] = 50
+    x._max_width["Відповідь розробника"] = 40
     print(x.get_string(sortby=("Локаль Google Play")))
     if(len(all_rate) > 0):
         print("Середня оцінка по фічеру відгуків: " + str(round(sum(all_rate) / len(all_rate), 1)))

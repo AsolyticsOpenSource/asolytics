@@ -9,10 +9,12 @@ from typing import List
 import time
 
 class App_reviews():
-    def __init__(self, hl:str, reviews:List[str], rates:List[float]) -> None:
+    def __init__(self, hl:str, reviews:List[str], rates:List[float], pub_dates:List[str], dev_response:List[str]) -> None:
         self.hl:str = hl
         self.reviews:List[str] = reviews
         self.rates:List[float] = rates
+        self.pub_dates:List[str] = pub_dates
+        self.dev_response:List[str] = dev_response
         pass
 
 class Featured_reviews():
@@ -130,18 +132,31 @@ class Featured_reviews():
     def get_reviews(self, browser:webdriver.Firefox, bundleId:str, hl:str) -> App_reviews:
         ar:App_reviews = None
         try:
-            browser.get("https://play.google.com/store/apps/details?id=" + bundleId + "&hl=" + hl)
+            hls = hl.split("-")
+            if len(hls) > 1:
+                browser.get("https://play.google.com/store/apps/details?id=" + bundleId + "&hl=" + hl + "&gl=" + hls[1])
+            else:
+                browser.get("https://play.google.com/store/apps/details?id=" + bundleId + "&hl=" + hl)
             elements = browser.find_elements(By.CLASS_NAME, "EGFGHd")
             reviews_list:List[str] = []
             rates_list:List[str] = []
+            pub_dates:List[str] = []
+            dev_response:List[str] = []
             for el in elements:
                 web_text:List[WebElement] = el.find_elements(By.CLASS_NAME, "h3YV2d")
                 web_rate:List[WebElement] = el.find_elements(By.CLASS_NAME, "Z1Dz7b")
+                web_pub_dates:List[WebElement] = el.find_elements(By.CLASS_NAME, "bp9Aid")
+                web_dev_response:List[WebElement] = el.find_elements(By.CLASS_NAME, "ras4vb")
                 if(len(web_text) > 0):
                     reviews_list.append(web_text[0].text)
                     rates_list.append(len(web_rate))
+                    pub_dates.append(web_pub_dates[0].text)
+                    if len(web_dev_response) > 0:
+                        dev_response.append(web_dev_response[0].text)
+                    else:
+                        dev_response.append("")
                     print("({}) Rate: ".format(hl) + str(len(web_rate)))
-            ar = App_reviews(hl,reviews_list, rates_list)
+            ar = App_reviews(hl,reviews_list, rates_list, pub_dates, dev_response)
         except Exception as e:
             print(e.args)
         return ar
