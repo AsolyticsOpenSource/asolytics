@@ -23,12 +23,14 @@ try:
     from asolytics.reviews import App_reviews, Featured_reviews
     from asolytics.tags import Tag, Google_play_tags, App_tags
     from asolytics.tracker import Tracker_google_play
+    from asolytics.extract import Extract_keywords
 except:
     from similar import App, parser_similar
     from local import Localization_of_naming
     from reviews import App_reviews, Featured_reviews
     from tags import Tag, Google_play_tags, App_tags
     from tracker import Tracker_google_play
+    from extract import Extract_keywords
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--key', dest='key', type=str, help='Аналізувати ключову фразу')
@@ -218,11 +220,6 @@ def action_parser_similar_app(bundleId):
 
 def extract_keywords_metadata_app(bundleId):
 
-    #, options=options
-    browser = webdriver.Firefox(service = FirefoxService(GeckoDriverManager().install()), options=options)
-    browser.implicitly_wait(10)
-    browser.maximize_window()
-
     if args.hl != None:
         hl = args.hl
         print("Код мови: " + hl)
@@ -237,91 +234,31 @@ def extract_keywords_metadata_app(bundleId):
         gl = "US"
         print("Код країни: " + gl)
 
-    browser.get("https://app.sensortower.com/overview/"+bundleId+"?country=" + gl)
-
-    full_text = ""
-
-    try :
-        page_app: WebElement = browser.find_element(By.CLASS_NAME, "css-1356rms")
-        title = page_app.find_element(By.TAG_NAME, "h2")
-        full_text += title.text + ". "
-        print(Fore.GREEN + "Назва додатка: " + title.text + Fore.WHITE)
-
-    except:
-        print("Додаток з таким bundleID ("+ bundleId +") не знайдено в Google Play")
-        browser.quit()
-        return
-
-    dev = page_app.find_element(By.TAG_NAME, "a")
-    full_text += dev.text+ ". "
-    print(dev.text)
-
-    metas: List[WebElement] = browser.find_elements(By.CLASS_NAME, "css-19cssbn")
-
-    subtitle:WebElement = metas[0].find_element(By.TAG_NAME, "div")
-    description:WebElement = metas[1].find_element(By.TAG_NAME, "div")
-
-    print(subtitle.text)
-    print(description.text)
-    full_text += subtitle.text + ". "
-    full_text += description.text + ". "
-
-    browser.execute_script("return document.getElementsByClassName('Container-module__container--ZyNoB')[0].remove();")
-
-    container = browser.find_element(By.CLASS_NAME, "MuiTabs-flexContainer")
-    btns: List[WebElement] = container.find_elements(By.TAG_NAME, "button")
-    btns[-1].click()
-
-    reviews = browser.find_elements(By.CLASS_NAME, "AppOverviewAppReviews-module__content--jCjyj")
-
-    text_reviews = ""
-    for rev in reviews:
-        text_reviews += rev.text + ". \n"
-
-    print(text_reviews)
-    full_text += text_reviews
-
-    #list_keywords = keywords.keywords(full_text, language='english', scores=True, split=True)
-
-    language = hl
-    max_ngram_size = 3
-    deduplication_threshold = 0.9
     
-    extractor = yake.KeywordExtractor(lan=language, n=max_ngram_size, dedupLim=deduplication_threshold, features=None, top=100)
-    list_keywords = extractor.extract_keywords(full_text)
+    ek = Extract_keywords()
 
-    relevant_keys = []
-    for x in list_keywords:
-        #time.sleep(1)
-        browser.get("https://play.google.com/store/search?q="+ x[0] +"&c=apps&hl=" + hl + "&gl=" + gl)
-        print(x)
-        links: List[WebElement] = browser.find_elements(By.TAG_NAME, "a")
+    keywords = ek.strat(bundleId, hl, gl)
 
-        for index, l in  enumerate(links):
-            link = l.get_attribute("href")
-            if( link == ("https://play.google.com/store/apps/details?id=" + bundleId)):
-                position = index - 5
-                print(position)
-                relevant_keys.append([x[0], x[1], position])
+    valid_keys = ek.position_validator(keywords, bundleId, hl, gl)
+
+    ek.browser_exit()
 
     x = PrettyTable()
     x.field_names = ["Ключова фраза", "Значущість в тексті", "Позиція в пошуку"]
 
-    for item in relevant_keys:
+    for item in valid_keys:
         x.add_row([item[0], item[1], item[2]])
 
     print(x.get_string(sortby=("Позиція в пошуку")))
 
-    print("Кількість знайдених ключових слів: " + str(len(relevant_keys)))
+    print("Кількість знайдених ключових слів: " + str(len(valid_keys)))
     print("Коефіцієнт індексації метаданих (країна - " + gl +"; мова - " + hl +"): "
-         + str(int(100 * len(relevant_keys)/len(list_keywords))) + "%")
+         + str(int(100 * len(valid_keys)/len(keywords))) + "%")
 
     if(args.csv != None):
         save_to_file_csv(x, args.csv)
 
     print("* * * Виконано! * * *")
-            
-    browser.quit()
 
     return
 

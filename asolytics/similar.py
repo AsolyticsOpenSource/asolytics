@@ -130,6 +130,7 @@ def checking_similar_apps(bundleID = "", level = 0, browser:webdriver = None):
     if(button != None):
         button.click()
         time.sleep(2)
+        browser.refresh()
         elements:List[WebElement] = browser.find_elements(By.CLASS_NAME, "Si6A0c")
         links = []
         for el in elements:

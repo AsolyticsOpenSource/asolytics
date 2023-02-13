@@ -155,6 +155,7 @@ class Google_play_tags():
             if(button != None):
                 button.click()
                 time.sleep(2)
+                browser.refresh()
                 elements:List[WebElement] = browser.find_elements(By.CLASS_NAME, "Si6A0c")
                 for el in elements:
                     href = el.get_attribute("href")
