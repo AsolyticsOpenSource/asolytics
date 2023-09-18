@@ -452,7 +452,7 @@ def average_install_in_Google_Play(bundleID, gl):
 
     button_deteils: List[WebElement] = browser.find_elements(By.CLASS_NAME, "VfPpkd-Bz112c-LgbsSe")
     
-    button_deteils.pop(4).click()
+    button_deteils.pop(5).click()
 
     time.sleep(4)
 
