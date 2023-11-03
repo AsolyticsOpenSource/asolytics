@@ -65,8 +65,8 @@ class Extract_keywords:
                     href = el.get_attribute("href")
                     if (not links.__contains__(href)) and (href != None and href.startswith("https://play.google.com/store/apps/details?id=")):
                         links.append(href)
-                for e in links: 
-                    print(e)
+                # for e in links: 
+                #     print(e)
         except Exception as e:
             print(e.args)
         return links
@@ -92,9 +92,9 @@ class Extract_keywords:
             dev_name = web_dev_name.text
 
             text = "{} {} {} {}.".format(title_app, description_app, text_review, dev_name)
-            print(title_app)
+            # print(title_app)
         except Exception as e:
-            print("sssdasd err")
+            # print("sssdasd err")
             print(e.args)
         return text
 
@@ -119,13 +119,13 @@ class Extract_keywords:
         for inx, x in enumerate(keywords):
             #time.sleep(1)
             self.browser.get("https://play.google.com/store/search?q="+ x[0] +"&c=apps&hl=" + hl + "&gl=" + gl)
-            print(x)
+            # print(x)
             links: List[WebElement] = self.browser.find_elements(By.TAG_NAME, "a")
 
             for index, l in  enumerate(links):
                 link = l.get_attribute("href")
                 if( link == ("https://play.google.com/store/apps/details?id=" + bundleId)):
                     position = index - 5
-                    print("{} / {}".format(position, inx))
+                    # print("{} / {}".format(position, inx))
                     relevant_keys.append([x[0], x[1], position])
         return relevant_keys
