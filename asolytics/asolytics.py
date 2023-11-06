@@ -768,6 +768,7 @@ def main():
                 for s in suggests:
                     el: WebElement = s
                     key = el.get_attribute("data-display-text")
+                    print(key)
                     if map.get(key, None) == None:
                         res.append(key)
                         map[key] = False

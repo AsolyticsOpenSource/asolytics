@@ -69,6 +69,7 @@ class Extract_keywords:
                 #     print(e)
         except Exception as e:
             print(e.args)
+        print(f"links: {links}")
         return links
 
     def get_content(self, browser, bundleId:str, hl:str, gl:str):
@@ -92,6 +93,11 @@ class Extract_keywords:
             dev_name = web_dev_name.text
 
             text = "{} {} {} {}.".format(title_app, description_app, text_review, dev_name)
+            print(f"title_app: {title_app}")
+            print(f"description_app: {description_app}")
+            print(f"text_review: {text_review}")
+            print(f"dev_name: {dev_name}")
+
             # print(title_app)
         except Exception as e:
             # print("sssdasd err")
