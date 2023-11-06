@@ -574,29 +574,29 @@ def average_install_in_Google_Play(bundleID, gl):
 
 def trends_google_play(gl, hl): 
 
-    # if hl == "uk":
-    #     alphabet = "абвгґдеєжзіїйклмнопрстуфхцчшщюя"
-    # elif hl == "ru":
-    #     alphabet = "абвгдежзиклмнопрстуфхцчшщэюя"
-    # elif hl == "pl":
-    #     alphabet = "aąbсćdеęfghijklłmnńoóprsśtuwyzźż"
-    # elif hl == "de":
-    #     alphabet = "abcdefghijklmnopqrstuvwxyzäöüß"
-    # elif hl == "en":
-    #     alphabet = "abcdefghijklmnopqrstuvwxyz"
-    # elif hl == "es":
-    #     alphabet = "abcdefghiklmnñopqrstuvwxyz"
-    # elif hl == "cs":
-    #     alphabet = "aábcčdďeéěfghciíjklmnňoópqrřsštťuúůvwxyýzž"
-    # elif hl == "el":
-    #     alphabet = "αβγδεζηθικλμνξοπρσςτυφχψω"
-    # elif hl == "it":
-    #     alphabet = "abcdefghilmnopqrstuvzùúòóìíèéà"
-    # else:
-    #     print(hl + " - this language is not yet supported")
-    #     sys.exit(0)
+    if hl == "uk":
+        alphabet = "абвгґдеєжзіїйклмнопрстуфхцчшщюя"
+    elif hl == "ru":
+        alphabet = "абвгдежзиклмнопрстуфхцчшщэюя"
+    elif hl == "pl":
+        alphabet = "aąbсćdеęfghijklłmnńoóprsśtuwyzźż"
+    elif hl == "de":
+        alphabet = "abcdefghijklmnopqrstuvwxyzäöüß"
+    elif hl == "en":
+        alphabet = "abcdefghijklmnopqrstuvwxyz"
+    elif hl == "es":
+        alphabet = "abcdefghiklmnñopqrstuvwxyz"
+    elif hl == "cs":
+        alphabet = "aábcčdďeéěfghciíjklmnňoópqrřsštťuúůvwxyýzž"
+    elif hl == "el":
+        alphabet = "αβγδεζηθικλμνξοπρσςτυφχψω"
+    elif hl == "it":
+        alphabet = "abcdefghilmnopqrstuvzùúòóìíèéà"
+    else:
+        print(hl + " - this language is not yet supported")
+        sys.exit(0)
 
-    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    # alphabet = "abcdefghijklmnopqrstuvwxyz"
 
     map_popularity = {}    
 
