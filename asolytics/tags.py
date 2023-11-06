@@ -22,7 +22,7 @@ class Tag():
         if self.link.startswith("https://play.google.com/store/search"):
             return "Пошуковий"
         elif self.link.startswith("https://play.google.com/store/apps/category/"):
-            return "Категорійний"
+            return "Categorical"
         else:
             return "Невідомий"
 
